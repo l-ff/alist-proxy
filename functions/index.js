@@ -10,7 +10,7 @@ export async function onRequest(context) {
   } = context
   context.request
   const url = new URL(request.url)
-  const response = fetch('https://alist-lf.glitch.me/' + url.pathname + url.search， {
+  const response = fetch('https://alist-lf.glitch.me/' + url.pathname + url.search,{
     method: request.method,
     headers: request.headers,
     body: request.body
