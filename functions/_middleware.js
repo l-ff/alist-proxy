@@ -8,12 +8,19 @@ export async function onRequest(context) {
     next, // used for middleware or to fetch assets
     data // arbitrary space for passing data between middlewares
   } = context
-  context.request
-  const url = new URL(request.url)
-  const response = fetch('https://alist-lf.glitch.me' + url.pathname + url.search,{
-    method: request.method,
-    headers: request.headers,
-    body: request.body
-  })
-  return response
+  let PROXY_HOST = context.env.PROXY_HOST
+  if (PROXY_HOST) {
+    const url = new URL(request.url)
+    const response = fetch(
+      'https://alist-lf.glitch.me' + url.pathname + url.search,
+      {
+        method: request.method,
+        headers: request.headers,
+        body: request.body
+      }
+    )
+    return response
+  } else {
+    return new Response('PROXY_HOST的环境变量未设置！', { status: 500 })
+  }
 }
