@@ -10,12 +10,10 @@ export async function onRequestPost(context) {
   } = context
   context.request
   const url = new URL(request.url)
-  const response = fetch('https://alist-lf.glitch.me'， {
+  const response = fetch('https://alist-lf.glitch.me', {
     method: request.method,
     headers: request.headers,
     body: request.body
   })
   return response
 }
-
-// lf
