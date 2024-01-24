@@ -8,10 +8,7 @@ export async function onRequest(context) {
     next, // used for middleware or to fetch assets
     data // arbitrary space for passing data between middlewares
   } = context
-  let PROXY_HOST = context.env.PROXY_HOST
-  
-    return new Response('PROXY_HOST的环境变量未设置！'+ PROXY_HOST,{ status: 500 })
-  
+  let PROXY_HOST = context.env.PROXY_HOST  
   if (PROXY_HOST) {
     const url = new URL(request.url)
     const response = fetch(
