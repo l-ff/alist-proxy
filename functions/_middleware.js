@@ -9,10 +9,13 @@ export async function onRequest(context) {
     data // arbitrary space for passing data between middlewares
   } = context
   let PROXY_HOST = context.env.PROXY_HOST
+  
+    return new Response('PROXY_HOST的环境变量未设置！'+ PROXY_HOST,{ status: 500 })
+  
   if (PROXY_HOST) {
     const url = new URL(request.url)
     const response = fetch(
-      'https://alist-lf.glitch.me' + url.pathname + url.search,
+      PROXY_HOST + url.pathname + url.search,
       {
         method: request.method,
         headers: request.headers,
